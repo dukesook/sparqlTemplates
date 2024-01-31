@@ -1,0 +1,13 @@
+[name]
+Do a SPARQL insert to enable geoindexing
+
+[type]
+UPDATE
+
+[params]
+
+[returns]
+
+[template]
+PREFIX geoSparql: <http://www.ontotext.com/plugins/geosparql#>
+INSERT DATA { [] geoSparql:enabled "true" . }

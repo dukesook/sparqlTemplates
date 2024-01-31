@@ -1,0 +1,38 @@
+[name]
+query-nsew-for-image
+
+[params]
+image - content id IRI (surrounded by <>)
+graph - the graph that the data is in
+
+[returns]
+?west westmost longitude in radians
+?east eastmost
+?north northmost latitude in radians
+?south southmost
+
+[template]
+PREFIX has_output: <http://www.ontologyrepository.com/CommonCoreOntologies/has_output>
+PREFIX designates: <http://www.ontologyrepository.com/CommonCoreOntologies/designates>
+PREFIX bottomright: <http://ontology.mil/foundry/IMH_0001096>
+PREFIX topleft: <http://ontology.mil/foundry/IMH_0001107>
+PREFIX long: <http://www.ontologyrepository.com/CommonCoreOntologies/has_longitude_value>
+PREFIX lat: <http://www.ontologyrepository.com/CommonCoreOntologies/has_latitude_value>
+PREFIX at: <http://ontology.mil/foundry/IMH_0001161>
+PREFIX measures: <http://www.ontologyrepository.com/CommonCoreOntologies/is_a_measurement_of>
+PREFIX has_value: <http://purl.obolibrary.org/obo/OBI_0002135>
+
+SELECT ?west ?east ?north ?south
+WHERE {  Graph param:graph {
+BIND( param:image  AS ?image) 
+?capture has_output: ?image . 
+?capture at: ?timei . 
+?timei has_value: ?time . 
+?image measures: ?scene . 
+?bbox designates: ?scene . 
+?bbox topleft: ?tl . 
+?bbox bottomright: ?br . 
+?tl long: ?west . 
+?tl lat: ?north . 
+?br long: ?east . 
+?br lat: ?south . }} 

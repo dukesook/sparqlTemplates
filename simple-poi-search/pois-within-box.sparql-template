@@ -1,0 +1,23 @@
+[name]
+Find POIs within a bounding box
+
+[params]
+box - A WKT polygon string representing the bounding box. The string quotes must be included. Example: "<http://www.opengis.net/def/crs/OGC/1.3/CRS84> Polygon((138.5028995333411 -34.97210576321383, 138.63199044847534 -34.97210576321383, 138.63199044847534 -35.05343542927633, 138.5028995333411 -35.05343542927633 , 138.5028995333411 -34.97210576321383))". Note that the polygon must be closed - the last point must be the same as the first point. The order for coordinates is longitude then latitude
+graph is the IRI of the named graph the data set is in. Must be surrounded by <>. Example <urn:poi>
+
+[returns]
+?name - the name of the POI
+?position - the WKT for the representative point for the POI. Example: "POINT(138.483 -34.7803)"^^wktLiteral. Order is lon lat.
+
+[template]
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?name ?point where {graph param:graph {
+    ?poi rdfs:label ?name.
+    ?poi a geo:Feature.
+    ?poi geo:hasGeometry ?geom.
+    ?geom geo:asWKT ?point.
+    BIND(param:box^^geo:wktLiteral as ?box).
+    ?geom geo:sfWithin ?box  .
+    } }
+

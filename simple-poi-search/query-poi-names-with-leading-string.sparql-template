@@ -1,0 +1,20 @@
+[name]
+query-poi-names-with-leading-string 
+
+[params]
+string is a search string as documented at https://graphdb.ontotext.com/documentation/master/full-text-search.html. Example "university"
+regex is a regex that filters results. Intended to filter for matches at the beginning of the string. Example "^university.*"
+limit is the maximum number of matches you want to receive
+
+[returns]
+?poi is an IRI of a point of interest whose name matches param:string
+?name is a name of the POI
+
+[template]
+PREFIX onto: <http://www.ontotext.com/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?name ?poi where { graph <urn:poi> {
+    ?poi rdfs:label ?name.
+        ?name onto:fts param:string.
+        FILTER regex(?name,param:regex, "i")
+    }} limit param:limit

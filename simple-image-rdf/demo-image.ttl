@@ -1,0 +1,119 @@
+@base          <http://example.com/> .
+@prefix uom:   <https://w3id.org/uom/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix imh:   <http://ontology.mil/foundry/IMH_> .
+@prefix obi:   <http://purl.obolibrary.org/obo/OBI_> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix imho:  <http://ontology.mil/imh/> .
+@prefix bfo:   <http://purl.obolibrary.org/obo/BFO_> .
+@prefix cco:   <http://www.ontologyrepository.com/CommonCoreOntologies/> .
+
+<0000004>  a            imh:0000063 ;
+        rdfs:label      "Capture of urn:uuid:87015BD8-C84B-4778-B593-5EF16982E452" ;
+        imh:0001161     <0000001> ;
+        cco:has_output  <urn:uuid:87015BD8-C84B-4778-B593-5EF16982E452> .
+
+imh:0001081  a  owl:Class .
+
+obi:0001931  a  owl:Class .
+
+<0000003>  a            imh:0001153 , <http://www.opengis.net/ont/geosparql#geometry> ;
+        rdfs:label      "Bounding box for !<urn:uuid:87015BD8-C84B-4778-B593-5EF16982E452>" ;
+        imh:0001071     <0000006> ;
+        imh:0001096     <0000008> ;
+        imh:0001107     <0000005> ;
+        imh:0001137     <0000007> ;
+        cco:designates  <0000002> ;
+        <http://www.opengis.net/ont/geosparql#asWKT>
+                "POLYGON((1.4420952 52.314037 ,-0.06637573 52.314037 ,-0.06637573 51.278927 ,1.4420952 51.278927 ,1.4420952 52.314037))" .
+
+imh:0001161  a  owl:ObjectProperty .
+
+imho:hello-image.owl  a  owl:Ontology .
+
+imh:0001096  a  owl:ObjectProperty .
+
+cco:is_a_measurement_of
+        a       owl:ObjectProperty .
+
+imh:0001071  a  owl:ObjectProperty .
+
+obi:0002135  a  owl:DatatypeProperty .
+
+imh:0000063  a  owl:Class .
+
+<0000008>  a                     imh:0001400 ;
+        rdfs:label               "bottomleft: 51.278927,-0.06637573" ;
+        cco:has_latitude_value   40.274374968483556 ;
+        cco:has_longitude_value  -0.0011584750741844686 .
+
+<0000002>  a        imh:0000077 ;
+        rdfs:label  "scene @ 2073466721000082000" .
+
+imh:0000078  a  owl:Class .
+
+uom:ns  a       owl:Class .
+
+imh:0001416  a  owl:Class .
+
+cco:has_latitude_value
+        a       owl:DatatypeProperty .
+
+cco:describes  a  owl:ObjectProperty .
+
+<0000007>  a                     imh:0001400 ;
+        rdfs:label               "bottomright: 51.278927,1.4420952" ;
+        cco:has_latitude_value   40.274374968483556 ;
+        cco:has_longitude_value  0.025169308677527303 .
+
+imh:0001137  a  owl:ObjectProperty .
+
+<0000001>  a         imh:0001416 ;
+        rdfs:label   "t=2073466721000082000" ;
+        obi:0002135  "2073466721000082000"^^xsd:long .
+
+<http://www.opengis.net/ont/geosparql#hasGeometry>
+        a       owl:ObjectProperty .
+
+imh:0001400  a  owl:Class .
+
+imh:0000077  a  owl:Class .
+
+<http://www.opengis.net/ont/sf#Polygon>
+        a       owl:Class .
+
+cco:designates  a  owl:ObjectProperty .
+
+cco:has_output  a  owl:ObjectProperty .
+
+<0000006>  a                     imh:0001400 ;
+        rdfs:label               "topright: 52.314037,-0.06637573" ;
+        cco:has_latitude_value   41.087348833388226 ;
+        cco:has_longitude_value  -0.0011584750741844686 .
+
+imh:0001532  a  owl:DatatypeProperty .
+
+cco:has_longitude_value
+        a       owl:DatatypeProperty .
+
+imh:0001107  a  owl:ObjectProperty .
+
+<0000005>  a                     imh:0001400 ;
+        rdfs:label               "topleft: 52.314037,1.4420952" ;
+        cco:has_latitude_value   41.087348833388226 ;
+        cco:has_longitude_value  0.025169308677527303 .
+
+<urn:uuid:87015BD8-C84B-4778-B593-5EF16982E452>
+        a                        imh:0000078 ;
+        rdfs:label               "image urn:uuid:87015BD8-C84B-4778-B593-5EF16982E452" ;
+        cco:is_a_measurement_of  <0000002> .
+
+<http://www.opengis.net/ont/geosparql#asWKT>
+        a       owl:DatatypeProperty .
+
+imh:0001153  a  owl:Class .
+
+imh:0001159  a  owl:ObjectProperty .

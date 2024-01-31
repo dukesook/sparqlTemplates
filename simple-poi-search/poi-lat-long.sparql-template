@@ -1,0 +1,22 @@
+[name]
+query-coordinates-of-place
+
+[params]
+poi-iri is the IRI of the point of interest. Should be surrounded by <>. Example: <http://example.com/i1144>
+graph is the IRI of the named graph the data set is in. Must be surrounded by <>. Example <urn:poi>
+
+[returns]
+?lat latitude
+?lon longitude
+
+[template]
+PREFIX measures: <http://www.ontologyrepository.com/CommonCoreOntologies/is_a_measurement_of>
+PREFIX lat: <http://www.ontologyrepository.com/CommonCoreOntologies/has_latitude_value>
+PREFIX lon: <http://www.ontologyrepository.com/CommonCoreOntologies/has_longitude_value>
+select ?lat ?lon where 
+   { graph param:graph
+     {  ?coord measures: param:poi-iri.
+        ?coord lat: ?lat.
+        ?coord lon: ?lon
+    }}  
+

@@ -1,0 +1,22 @@
+[name]
+images-and-times
+
+[params]
+graph - the graph that the data is in
+
+[returns]
+?image - content id IRI
+?time - TAI time of the image
+
+[template]
+PREFIX has_output: <http://www.ontologyrepository.com/CommonCoreOntologies/has_output>
+PREFIX image: <http://ontology.mil/foundry/IMH_0000078>
+PREFIX at: <http://ontology.mil/foundry/IMH_0001161>
+PREFIX has_value: <http://purl.obolibrary.org/obo/OBI_0002135>
+
+SELECT ?image ?time
+WHERE {  Graph param:graph {
+?image a image: . 
+?capture has_output: ?image . 
+?capture at: ?timei . 
+?timei has_value: ?time . }} 

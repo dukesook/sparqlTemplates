@@ -1,0 +1,23 @@
+[name]
+Query-image-at-time
+
+[params]
+time: TAI time as string. Include string quotes.
+graph - the graph that the data is in
+
+[returns]
+?image content id for image at time
+
+[template]
+PREFIX has_output: <http://www.ontologyrepository.com/CommonCoreOntologies/has_output>
+PREFIX image: <http://ontology.mil/foundry/IMH_0000078>
+PREFIX at: <http://ontology.mil/foundry/IMH_0001161>
+PREFIX has_value: <http://purl.obolibrary.org/obo/OBI_0002135>
+
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT ?image
+WHERE {  Graph param:graph {
+?image a image: . 
+?capture has_output: ?image . 
+?capture at: ?timei . 
+?timei has_value: param:time^^xsd:long . }} 

@@ -1,0 +1,29 @@
+[name]
+Query-univeristy-within-image
+
+[params]
+image - content id IRI (surrounded by <>)
+graph - the graph that the data is in
+
+[returns]
+?name name of the POI
+?point WKT of the coordinate in CRS84 - long, lat
+
+PREFIX aswkt: <http://www.opengis.net/ont/geosparql#asWKT>
+PREFIX designates: <http://www.ontologyrepository.com/CommonCoreOntologies/designates>
+PREFIX measures: <http://www.ontologyrepository.com/CommonCoreOntologies/is_a_measurement_of>
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
+SELECT ?name ?point
+WHERE {  Graph param:graph {
+BIND( param:image  AS ?image) 
+?poi a geosparql:Feature . 
+?poi geosparql:hasGeometry ?geom . 
+?geom geosparql:asWKT ?point . 
+?image measures: ?scene . 
+?bbox designates: ?scene . 
+?bbox aswkt: ?box . 
+?geom geosparql:sfWithin ?box . 
+?poi rdfs:label ?name . 
+FILTER regex(?name,"university","i")}} 
